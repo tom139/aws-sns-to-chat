@@ -1,0 +1,5 @@
+{
+  "python.autoComplete.extraPaths": [
+    "./alarm_to_gchat_fn"
+  ]
+}

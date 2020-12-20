@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS
+
+  Sample SAM Template for AWS
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 6
+    MemorySize: 512  
+
+Resources:
+  AlarmsSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: AlarmToGChatTopic
+      Tags:
+        - Key: Referente
+          Value: t.panozzo
+        - Key: Progetto
+          Value: AWS to Google Chat
+
+  AlarmsTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      Topics:
+        - !Ref AlarmsSNSTopic
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: '*'
+            Action: SNS:Publish
+            Resource: !Ref AlarmsSNSTopic
+            Condition:
+              ArnLike:
+                aws:SourceArn: 'arn:aws:cloudwatch:*:*:alarm:*'
+
+  TopicTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties: {}
+
+  AlarmToGChatFn:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: alarm_to_gchat_fn
+      Handler: src/app.lambda_handler
+      Runtime: python3.8
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TopicTable
+      Environment:
+        Variables:
+          TopicTable: !Ref TopicTable
+      Events:
+        AlarmsSNSTopic:
+          Type: SNS
+          Properties:
+            Topic: !Ref AlarmsSNSTopic
+
+Outputs:
+  AlarmToGChatFn:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt AlarmToGChatFn.Arn
+  AlarmToGChatFnIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt AlarmToGChatFnRole.Arn
