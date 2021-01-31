@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full
+FROM amazon/aws-sam-cli-emulation-image-python3.8
 
 USER gitpod
 
