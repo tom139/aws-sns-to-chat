@@ -1,0 +1,16 @@
+# defines which labels should automatically attached to PRs
+# when actions/labeler runs
+# see: https://github.com/actions/labeler
+
+documentation:
+  - **.md
+  - docs/**/*
+
+extra care:
+  - .github/**/*
+  - **/template.ya?ml
+  - **/samconfig.toml
+
+infrastructure:
+  - **/template.ya?ml
+  - **/samconfig.toml
