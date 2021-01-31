@@ -10,3 +10,9 @@ ports:
 tasks:
   - init: sam build # runs during prebuild
     command: sam local start-api
+
+
+github:
+  prebuilds:
+    addComment: true
+    addBadge: true
