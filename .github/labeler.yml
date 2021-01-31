@@ -4,13 +4,13 @@
 
 documentation:
   - '**/*.md'
-  - docs/**/*
+  - 'docs/**/*'
 
 extra care:
-  - .github/**/*
-  - **/template.ya?ml
-  - **/samconfig.toml
+  - '.github/**/*'
+  - '**/template.ya?ml'
+  - '**/samconfig.toml'
 
 infrastructure:
-  - **/template.ya?ml
-  - **/samconfig.toml
+  - '**/template.ya?ml'
+  - '**/samconfig.toml'
