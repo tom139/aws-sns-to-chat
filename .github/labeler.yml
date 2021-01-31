@@ -3,7 +3,7 @@
 # see: https://github.com/actions/labeler
 
 documentation:
-  - **/*.md
+  - '**/*.md'
   - docs/**/*
 
 extra care:
