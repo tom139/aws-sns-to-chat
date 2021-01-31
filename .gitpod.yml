@@ -1,5 +1,5 @@
 image:
-  file: amazon/aws-sam-cli-emulation-image-python3.8
+  file: .gitpod.Dockerfile
 
 # List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
 ports:
