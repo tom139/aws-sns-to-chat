@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/tom139/aws-sns-to-chat)
+
 # AWS SNS to Chat
 
 This project is Serverless Application to transform SNS events to messages in common chat platforms.
